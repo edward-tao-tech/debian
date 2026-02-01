@@ -18,9 +18,10 @@ RUN apt-get update && apt-get install -y \
 
 # 配置 SSH
 # 允许 root 登录（可选，根据 vevc 原仓库逻辑通常支持环境变量修改密码）
-RUN mkdir /var/run/sshd \
+RUN mkdir -p /var/run/sshd \
     && sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config \
     && sed -i 's/#PasswordAuthentication yes/PasswordAuthentication yes/' /etc/ssh/sshd_config
+
 
 # 复制启动脚本
 COPY entrypoint.sh /entrypoint.sh
