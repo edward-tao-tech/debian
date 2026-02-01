@@ -20,12 +20,8 @@ RUN apt-get update && apt-get install -y \
 # 允许 root 登录（可选，根据 vevc 原仓库逻辑通常支持环境变量修改密码）
 RUN mkdir -p /var/run/sshd \
     && sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config \
+    && sed -i 's/#PubkeyAuthentication yes/PubkeyAuthentication yes/' /etc/ssh/sshd_config \
     && sed -i 's/#PasswordAuthentication yes/PasswordAuthentication yes/' /etc/ssh/sshd_config
-
-RUN mkdir -p /root/.ssh && \
-    echo "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAro3wqO+YTOkmcDm4kl65ZHPAqWqcbyxUtoKBeb5l8KUdFKwj31C/VnNCchGlDyh8GUWLPVjkIytMHTov6ykWWihCegOeyN1f1r7KSxj83tBRsbsB+xzEYKNOB+FyR7VJ8KO8RAzBpACkyo1MQN8UecN+FIfPnneZ2idjpMYKEC/oV0zh2a8jrBn68OS4CNKtZ0JZBPa4fXHQyZqyqwsZITSsvLfekcGwSD8yUv6LCeDTxIp4cBQ5AGGbE9fMSQZ9h8GShn6PYh5aF8/uclBP/ejowktHQ9Wevw/hRh/HeRQkJuvojgf9koNhZzWFPDmWSnYvrFxfbm6JSQjT/Htbiw== rsa 2048-20260201" > /root/.ssh/authorized_keys && \
-    chmod 700 /root/.ssh && \
-    chmod 600 /root/.ssh/authorized_keys
 
 # 复制启动脚本
 COPY entrypoint.sh /entrypoint.sh
