@@ -7,7 +7,7 @@ on:
 
 env:
   REGISTRY: ghcr.io
-  # 这里会自动生成 "用户名/仓库名"，例如 "Edward0807/webssh"
+  # 这里会自动生成 "用户名/仓库名"
   IMAGE_NAME: ${{ github.repository }}
 
 jobs:
@@ -39,7 +39,7 @@ jobs:
             # 当推送到 main 分支时，自动标记为 latest
             type=raw,value=latest,enable=${{ github.ref == 'refs/heads/main' }}
             # 同时保留 SHA 标签方便回溯版本
-            type=sha,format=short
+            # type=sha,format=short
       
       - name: Build and push Docker image
         uses: docker/build-push-action@v5
