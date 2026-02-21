@@ -29,10 +29,10 @@ if [ -n "$NZ_SERVER" ] && [ -n "$NZ_CLIENT_SECRET" ]; then
     
     if [ "$NZ_TLS" = "true" ]; then
         echo "Starting Agent with TLS..."
-        env NZ_SERVER="$NZ_SERVER" NZ_TLS=true NZ_CLIENT_SECRET="$NZ_CLIENT_SECRET" ./agent.sh install_run &
+        env NZ_UUID="$NZ_UUID" NZ_SERVER="$NZ_SERVER" NZ_TLS=true NZ_CLIENT_SECRET="$NZ_CLIENT_SECRET" ./agent.sh install_run &
     else
         echo "Starting Agent without TLS..."
-        env NZ_SERVER="$NZ_SERVER" NZ_CLIENT_SECRET="$NZ_CLIENT_SECRET" ./agent.sh install_run &
+        env NZ_UUID="$NZ_UUID" NZ_SERVER="$NZ_SERVER" NZ_CLIENT_SECRET="$NZ_CLIENT_SECRET" ./agent.sh install_run &
     fi
     echo "Nezha Agent is running in background."
 fi
